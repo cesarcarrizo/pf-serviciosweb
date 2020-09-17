@@ -1,0 +1,31 @@
+{
+    "name": "pf-servicios-web",
+    "version": "1.0.0",
+    "description": "Proyecto final III cuatrimestre, valor del proyecto 55%, gestor de controlador aereo",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon server.js"
+    },
+    "keywords": [
+    "PF",
+    "nodejs",
+    "express",
+    "mssql",
+    "ejs",
+    "servicios",
+    "web",
+    "encryption"
+  ],
+    "author": "Alejandro Acuna, Cesar Carrizo, Celeste Melendez",
+    "license": "UNLICENSED",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "ejs": "^3.1.5",
+        "express": "^4.17.1",
+        "mssql": "^6.2.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.4"
+    }
+}
