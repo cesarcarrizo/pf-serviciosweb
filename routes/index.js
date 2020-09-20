@@ -1,11 +1,4 @@
 const express = require("express");
-const router = express.Router();
+const homeRouter = require("././homeRoutes")
 
-
-
-module.exports = () => {
-
-    // create routing modules for each specific URI
-
-    return router;
-};
+module.exports = homeRouter;
