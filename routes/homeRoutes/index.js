@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-// HOME
+// home
 module.exports = () => {
 
     // create routing modules for each specific URI
     router.route("/")
         .get((req, res) => {
-            res.send("get setted succesfully");
+            // shows the login page
+            res.render("pages/loginPage");
         });
 
     return router;

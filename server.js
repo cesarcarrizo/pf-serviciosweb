@@ -3,7 +3,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const mssql = require("mssql");
 
 const router = require("./routes");
 
@@ -24,6 +23,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use("/static", express.static(path.join(__dirname, "./resources")));
+
+
 
 app.use("/", router());
 
