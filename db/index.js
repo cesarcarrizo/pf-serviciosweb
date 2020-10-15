@@ -1,10 +1,34 @@
-const sql = require("mssql");
+let Connection = require('tedious').Connection;
 
-let config = {
-    user: '...',
-    password: '...',
-    server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
-    database: '...'
-}
+const config = {
+    server: 'localhost',
+    options: {
+        encrypt: false,
+        database: 'master',
+        debug: {
+            packet: true,
+            data: true,
+            payload: true,
+            token: false,
+            log: true
+        }
+    },
+    authentication: {
+        type: 'default',
+        options: {
+            userName: 'DESKTOP-0NH69QF\\ADMIN',
+            password: 'admin'
+        }
+    }
+};
 
-const connectionPool = new sql.ConnectionPool(config);
+let conn = new Connection(config);
+
+conn.connect((err) => {
+    if (err) {
+        console.log('Error :', err);
+    }
+    console.log("Success");
+});
+
+module.exports = conn;
