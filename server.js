@@ -30,5 +30,6 @@ app.use("/", router());
 
 app.listen(PORT, () => {
     console.log(`Servidor escuchando por peticiones en ${localhost}:${PORT}`);
-    db.on;
+    let data = db.test;
+    console.log(data);
 });

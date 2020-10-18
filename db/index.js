@@ -1,34 +1,30 @@
-let Connection = require('tedious').Connection;
+// modulo para importar los datos desde la BD
+const sql = require('mssql/msnodesqlv8');
 
+// configuracion para que sea local
 const config = {
-    server: 'localhost',
+    server: "DESKTOP-0NH69QF",
+    database: "test_db",
+    driver: 'msnodesqlv8',
     options: {
-        encrypt: false,
-        database: 'master',
-        debug: {
-            packet: true,
-            data: true,
-            payload: true,
-            token: false,
-            log: true
-        }
-    },
-    authentication: {
-        type: 'default',
-        options: {
-            userName: 'DESKTOP-0NH69QF\\ADMIN',
-            password: 'admin'
-        }
-    }
+        trustedConnection: true
+    }    
 };
 
-let conn = new Connection(config);
+// instancia de la conexion
+const pool = new sql.ConnectionPool(config);
 
-conn.connect((err) => {
-    if (err) {
-        console.log('Error :', err);
+// secuencia de la logica para probar la conexion (exitosa)
+const request = new sql.Request(pool);
+
+let test = request.query('select * from personas;', (err, result) => {
+    if(err){
+        console.log(err);
+        return;
     }
-    console.log("Success");
+    console.log(JSON.parse(result.recordsets));
 });
 
-module.exports = conn;
+module.exports = {
+    test
+};
