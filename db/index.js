@@ -11,19 +11,29 @@ const config = {
     }    
 };
 
-// instancia de la conexion
-const pool = new sql.ConnectionPool(config);
 
-// secuencia de la logica para probar la conexion (exitosa)
-const request = new sql.Request(pool);
+// test passed with test_db
+let test = async () => {
+    try{
+        // valores a ingresar
+        let value = 24815638;
+        //conectamos por medio de un pool
+        let pool = await sql.connect(config);
 
-let test = request.query('select * from personas;', (err, result) => {
-    if(err){
+        //debemos especificar cual tipo es en el segundo parametro
+        let result = await pool.request()
+        .input('input_parameter', sql.Int, value)
+        .query('select * from personas where cedula = @input_parameter;');
+
+        // imprime resultado
+        console.dir(result.recordset);
+        return result.recordset;
+    }
+    catch(err){
         console.log(err);
         return;
     }
-    console.log(JSON.parse(result.recordsets));
-});
+};
 
 module.exports = {
     test
