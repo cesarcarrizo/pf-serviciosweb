@@ -11,7 +11,6 @@ const config = {
     }    
 };
 
-
 // test passed with test_db
 let test = async () => {
     try{
@@ -30,8 +29,9 @@ let test = async () => {
         return result.recordset;
     }
     catch(err){
+        // otherwiseeeee
         console.log(err);
-        return;
+        return err;
     }
 };
 

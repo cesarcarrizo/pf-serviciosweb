@@ -3,7 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const db = require('./db');
+//const db = require('./db');
 
 const router = require("./routes");
 
@@ -26,10 +26,10 @@ app.use(bodyParser.urlencoded({
 app.use("/static", express.static(path.join(__dirname, "./resources")));
 
 
-app.use("/", router());
+app.use("/", router);
 
 app.listen(PORT, () => {
     console.log(`Servidor escuchando por peticiones en ${localhost}:${PORT}`);
-    let data = db.test();
-    console.log(data);
+    //let data = db.test();
+    //console.log(typeof data);
 });
