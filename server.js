@@ -3,9 +3,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-//const db = require('./db');
+const db = require('./db');
 
-const router = require("./routes");
+// route modules
+const homeRouter = require("./routes/homeRoutes");
+const loginRouter = require("./routes/loginRoutes");
 
 const PORT = process.env.PORT || 3000;
 const localhost = "127.0.0.1";
@@ -26,10 +28,9 @@ app.use(bodyParser.urlencoded({
 app.use("/static", express.static(path.join(__dirname, "./resources")));
 
 
-app.use("/", router);
+app.use("/home", homeRouter(db));
+app.use("/login", loginRouter(db));
 
 app.listen(PORT, () => {
     console.log(`Servidor escuchando por peticiones en ${localhost}:${PORT}`);
-    //let data = db.test();
-    //console.log(typeof data);
 });

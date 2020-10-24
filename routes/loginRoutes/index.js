@@ -1,15 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
-// hacemos la exportacion como una funcion para posteriormente agregar el modulo del DB
-// home
+// login
 module.exports = (db) => {
 
     // create routing modules for each specific URI
     router.route("/")
-        .get((req, res) => {
+        .get((req, res, next) => {
             // shows the login page
-            res.send("N I Y");
+            res.render("pages/loginPage");
+            next();
+        }, (req, res) => {
+            console.log('Petición Get @ /login hecha por '+ req.headers.host);
         });
 
     return router;
