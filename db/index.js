@@ -25,7 +25,7 @@ let test = async () => {
         .query('select * from personas where cedula = @input_parameter;');
 
         // imprime resultado
-        console.dir(result.recordset);
+        //console.dir(result.recordset);
         return result.recordset;
     }
     catch(err){
