@@ -11,6 +11,22 @@ const config = {
     }    
 };
 
+let guest = async (pk) => {
+    try {
+        let pool = await sql.connect(config);
+        //debemos especificar cual tipo es en el segundo parametro
+        let result = await pool.request()
+        .input('param', sql.Int, pk)
+        .query('select * from t_usuarios where cedula_usu_pk = @param;');
+        // compara el password con en del registro y evalua
+        return result.recordset[0];
+    }
+    catch(err){
+        console.log(err);
+        return;
+    }
+}
+
 
 let autenticacion = async (cedula, passwd) => {
     
@@ -30,6 +46,7 @@ let autenticacion = async (cedula, passwd) => {
 
         // si existe y hace match con el password pasado...
         if(dataObject.passwd_usu === passwd){
+            // asignamos el Id del cliente para referenciarlo luego en el home
             global.authId = dataObject.cedula_usu_pk;
             return true;
         }
@@ -68,5 +85,5 @@ let test = async () => {
 
 module.exports = {
     autenticacion,
-
+    guest
 };

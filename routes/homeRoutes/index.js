@@ -7,9 +7,15 @@ module.exports = (db) => {
 
     // create routing modules for each specific URI
     router.route("/")
-        .get((req, res) => {
+        .get(async (req, res) => {
             // shows the login page
-            res.send(global.authId);
+            if(global.authId === -1){
+                res.send('<h1>Acceso no autorizado, por favor iniciar sesión!</h1>');
+            } else {
+                let guestData = await db.guest(global.authId);
+                console.log(guestData); 
+                res.render('pages/homePage');
+            }
         });
 
     return router;
