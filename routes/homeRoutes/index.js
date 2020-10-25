@@ -9,7 +9,7 @@ module.exports = (db) => {
     router.route("/")
         .get((req, res) => {
             // shows the login page
-            res.send("N I Y");
+            res.send(global.authId);
         });
 
     return router;

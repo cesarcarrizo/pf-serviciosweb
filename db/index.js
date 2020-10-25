@@ -11,6 +11,37 @@ const config = {
     }    
 };
 
+
+let autenticacion = async (cedula, passwd) => {
+    
+    try{
+        //conectamos por medio de un pool
+        let pool = await sql.connect(config);
+        //debemos especificar cual tipo es en el segundo parametro
+        let result = await pool.request()
+        .input('param', sql.Int, cedula)
+        .query('select * from t_usuarios where cedula_usu_pk = @param;');
+        // compara el password con en del registro y evalua
+        let dataObject = result.recordset[0];
+        // si no existe
+        if(dataObject===undefined){
+            return false;
+        }
+
+        // si existe y hace match con el password pasado...
+        if(dataObject.passwd_usu === passwd){
+            global.authId = dataObject.cedula_usu_pk;
+            return true;
+        }
+        return false;
+        
+    }
+    catch (err){
+        console.log(err);
+        return false;
+    }
+};
+
 // test passed with test_db
 let test = async () => {
     try{
@@ -25,8 +56,8 @@ let test = async () => {
         .query('select * from personas where cedula = @input_parameter;');
 
         // imprime resultado
-        //console.dir(result.recordset);
-        return result.recordset;
+        console.dir(result.recordset);
+        return 'usando la funcion test stupid';
     }
     catch(err){
         // otherwiseeeee
@@ -36,5 +67,6 @@ let test = async () => {
 };
 
 module.exports = {
-    test
+    autenticacion,
+
 };
