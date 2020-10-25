@@ -63,18 +63,17 @@ let autenticacion = async (cedula, passwd) => {
 let test = async () => {
     try{
         // valores a ingresar
-        let value = 24815638;
+        let value = 123;
         //conectamos por medio de un pool
         let pool = await sql.connect(config);
 
         //debemos especificar cual tipo es en el segundo parametro
         let result = await pool.request()
         .input('input_parameter', sql.Int, value)
-        .query('select * from personas where cedula = @input_parameter;');
+        .query('select * from t_usuarios where cedula_usu_pk = @input_parameter;');
 
         // imprime resultado
-        console.dir(result.recordset);
-        return 'usando la funcion test stupid';
+        return result.recordset[0];
     }
     catch(err){
         // otherwiseeeee
@@ -85,5 +84,6 @@ let test = async () => {
 
 module.exports = {
     autenticacion,
-    guest
+    guest,
+    test
 };

@@ -17,7 +17,7 @@ const app = express();
 // check this for security stuff
 app.set("trust proxy", 1);
 
-app.set("view engine", "ejs");
+app.set("view engine", "ejs");// Embedded Java Script
 app.set("views", path.join(__dirname, "./views"));
 
 app.use(bodyParser.json());
@@ -31,6 +31,7 @@ app.use("/static", express.static(path.join(__dirname, "./resources")));
 app.use("/home", homeRouter(db));
 app.use("/login", loginRouter(db));
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log(`Servidor escuchando por peticiones en ${localhost}:${PORT}`);
+    //console.dir(await db.test());
 });
