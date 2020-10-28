@@ -2,9 +2,8 @@
 <%- include('../part/navbar', {rol_usu: data.rol_usu}) %>
 
 <%# El arreglo contendra el nombre de la columna proveniente de la data, el segundo elemento es el valor %>
-<% const dataArray = Object.entries(data); %>
- 
-<% dataArray.forEach(array => { %>
+<% const dataArray2D = Object.entries(data); %>
+<% dataArray2D.forEach(array => { %>
 
     <h6><%= array[0] %>: <%= array[1] %>,</h6><br></br>
     

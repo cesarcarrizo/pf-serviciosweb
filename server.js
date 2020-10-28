@@ -35,7 +35,7 @@ app.get("/", (req, res)=>{
    res.redirect("/login"); 
 });
 
-app.listen(PORT, async () => {
+app.listen(PORT, () => {
     console.log(`Servidor escuchando por peticiones en ${localhost}:${PORT}`);
     //console.dir(await db.test());
 });
