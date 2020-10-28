@@ -31,6 +31,10 @@ app.use("/static", express.static(path.join(__dirname, "./resources")));
 app.use("/home", homeRouter(db));
 app.use("/login", loginRouter(db));
 
+app.get("/", (req, res)=>{
+   res.redirect("/login"); 
+});
+
 app.listen(PORT, async () => {
     console.log(`Servidor escuchando por peticiones en ${localhost}:${PORT}`);
     //console.dir(await db.test());

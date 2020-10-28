@@ -1,42 +1,68 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/home">Navbar</a>
+    <% if(rol_usu === 0){ %>
+        <a class="navbar-brand" href="/home">Vuelos-V <b>Administrador</b></a>
+    <% } %> 
+    <% if(rol_usu === 1){ %>
+        <a class="navbar-brand" href="/home">Vuelos-V <b>Seguridad</b></a>
+    <% } %> 
+    <% if(rol_usu === 2){ %>
+        <a class="navbar-brand" href="/home">Vuelos-V <b>Consecutivo</b></a>
+    <% } %> 
+    <% if(rol_usu === 3){ %>
+        <a class="navbar-brand" href="/home">Vuelos-V <b>Mantenimiento</b></a>
+    <% } %> 
+    <% if(rol_usu === 4){ %>
+        <a class="navbar-brand" href="/home">Vuelos-V <b>Consultas</b></a>
+    <% } %> 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Seguridad
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
+        <% if(rol_usu === 0 || rol_usu === 1) { %> 
+            <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Administracion
+                Seguridad
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="#">Usuarios</a>
+                <a class="dropdown-item" href="#">Crear nuevo usuario</a>
+                <a class="dropdown-item" href="#">Asignar o actualizar rol a un usuario</a>
+                <a class="dropdown-item" href="#">Cambiar contraseña</a>
             </div>
-          </li>
+            </li>
+        <% } %>
 
+        <% if(rol_usu === 0 || rol_usu === 2 || rol_usu === 3) { %> 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Administración
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Consecutivos</a>
+                <% if(rol_usu === 0 || rol_usu === 3){ %> 
+                    <a class="dropdown-item" href="#">Paises</a>
+                    <a class="dropdown-item" href="#">Aerolíneas</a>
+                    <a class="dropdown-item" href="#">Puertas del aeropuerto</a>
+                <% } %>
+                </div>
+            </li>
+        <% } %>
+
+        <% if(rol_usu === 0 || rol_usu === 4){ %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Consultas
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" href="#">Bitácora</a>
+              <a class="dropdown-item" href="#">Errores</a>
+              <a class="dropdown-item" href="#">Descargas</a>
+              <a class="dropdown-item" href="#">Aerolíneas</a>
+              <a class="dropdown-item" href="#">Puertas</a>
             </div>
           </li>
+        <% } %> 
       </ul>
     </div>
   </nav>
