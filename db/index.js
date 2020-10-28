@@ -59,6 +59,7 @@ let autenticacion = async (cedula, passwd) => {
     }
 };
 
+// TEST FUNCTION
 // test passed with test_db
 let test = async () => {
     try{
@@ -84,6 +85,5 @@ let test = async () => {
 
 module.exports = {
     autenticacion,
-    guest,
-    test
+    guest
 };

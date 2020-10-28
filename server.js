@@ -6,13 +6,21 @@ const path = require("path");
 const db = require('./db');
 
 // route modules
-const homeRouter = require("./routes/homeRoutes");
-const loginRouter = require("./routes/loginRoutes");
+const homeRouter = require("./routes/homeRoute");
+const loginRouter = require("./routes/loginRoute");
 
 const PORT = process.env.PORT || 3000;
 const localhost = "127.0.0.1";
 
 const app = express();
+
+
+global.logger = (req, res) => {
+    let client = req.headers.host;
+    let route = req.baseUrl;
+    let meth = req.method;
+    return console.log(`Petición ${meth} @ ${route} hecha por ${client}`);
+};
 
 // check this for security stuff
 app.set("trust proxy", 1);
@@ -26,10 +34,9 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use("/static", express.static(path.join(__dirname, "./resources")));
-
-
 app.use("/home", homeRouter(db));
 app.use("/login", loginRouter(db));
+
 
 app.get("/", (req, res)=>{
    res.redirect("/login"); 

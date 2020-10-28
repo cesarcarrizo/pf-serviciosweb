@@ -1,33 +1,31 @@
 const express = require("express");
 const router = express.Router();
 
+
 // login
 module.exports = (db) => {
 
     // create routing modules for each specific URI
     router.route("/")
-        .get((req, res, next) => {
+        .get((req, res) => {
+            global.logger(req, res);
             // shows the login page with EJS view engine, this applies for the rests of the router modules
             // cada ves que se ingresa al login cierra la sesion
             global.authId = -1; 
-            res.render("pages/loginPage");
-            next();
-        }, (req, res) => {
-            console.log('Petición GET @ /login hecha por '+ req.headers.host);
+            res.render("pages/loginPage", {alert: false});
         })
-        .post(async (req, res, next) =>{
+        .post(async (req, res) =>{
+            global.logger(req, res);
             let data = JSON.parse(JSON.stringify(req.body));
             let autenticacion = await db.autenticacion(data.cedula, data.password);
 
             if(autenticacion === true){
+                // en caso de que sean correctos los datos
                 res.redirect('/home');
             }else{
-                res.redirect('/login');
+                // de caso contrario envia de nuevo al login pero con una alerta
+                res.render('pages/loginPage', {alert: true});
             }
-            
-            next();
-        }, (req, res) =>{
-            console.log('Petición POST @ /login hecha desde '+ req.headers.origin);
         })
 
     return router;

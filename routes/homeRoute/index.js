@@ -8,6 +8,7 @@ module.exports = (db) => {
     // create routing modules for each specific URI
     router.route("/")
         .get(async (req, res) => {
+            global.logger(req, res);
             // shows the login page
             if(global.authId === -1){
                 res.send('<h1>Acceso no autorizado, por favor iniciar sesión!</h1>');

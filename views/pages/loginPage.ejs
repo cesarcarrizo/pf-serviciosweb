@@ -1,10 +1,12 @@
 <%- include('../part/head', {title: "Login"}) %>
-<%- include('../part/navbarLogin') %>
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="/login">V-Vuelos <b>Login</b></a>
+</nav>
    
 
 <div class="container">
     <div class="jumbotron">
-        <h1>VUELOS-V</h1>
+        <h1>V-VUELOS</h1>
         <hr>
         <p>Para ingresar al sistema por favor ingrese sus credenciales</p>
         <form method="POST" type="form-control">
@@ -23,7 +25,12 @@
             <input type="submit" class="btn btn-success" value="Iniciar Sesión"/>
 
         </form>
-    </div>   
+    </div>
+    <% if(alert){ %>
+      <div class="alert alert-danger" role="alert">
+        Cédula y/o password incorrectos! Intente de nuevo.
+      </div>  
+    <% } %>
 </div>
     
 <%- include('../part/tail') %>
