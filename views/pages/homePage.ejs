@@ -1,12 +1,12 @@
 <%- include('../part/head', {title: "Homepage"}) %>
 <%- include('../part/navbar', {rol_usu: data.rol_usu}) %>
+<%- include('../part/menubar', {name: data.nombre_comp_usu, displayText: "N I Y", currentNode: "Homepage"}) %>
 
-<%# El arreglo contendra el nombre de la columna proveniente de la data, el segundo elemento es el valor %>
+
+<%#  info: el arreglo contendra el nombre de la columna proveniente de la data, el segundo elemento es el valor %>
 <% const dataArray2D = Object.entries(data); %>
 <% dataArray2D.forEach(array => { %>
-
     <h6><%= array[0] %>: <%= array[1] %>,</h6><br></br>
-    
 <%});%>
 
 <%- include('../part/tail') %>

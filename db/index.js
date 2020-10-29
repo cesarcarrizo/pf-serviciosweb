@@ -11,6 +11,22 @@ const config = {
     }    
 };
 
+let crearUsuario = async (cedula, nombreComp, username, passwd, email, pregunta, respuesta) =>{
+    // por default se crea el usuario siendo solo consultor
+    try{
+        let pool = await sql.connect(config);
+        let result = await pool.request()
+        .input('cedula', sql.Int, cedula)
+        .query(`insert into t_usuarios values (@cedula, '${nombreComp}','${username}','${passwd}','${email}','${pregunta}','${respuesta}', null, null, 4);`);
+
+        return result.recordset[0];
+    }
+    catch(err){
+        console.log(err);
+        return;
+    }
+};
+
 let guest = async (pk) => {
     try {
         let pool = await sql.connect(config);
@@ -85,5 +101,6 @@ let test = async () => {
 
 module.exports = {
     autenticacion,
-    guest
+    guest,
+    crearUsuario
 };

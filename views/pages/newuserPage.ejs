@@ -1,0 +1,99 @@
+<%- include('../part/head', {title: "Agregar un nuevo usuario"}) %>
+<%- include('../part/navbar', {rol_usu: data.rol_usu}) %>
+<%- include('../part/menubar', {name: data.nombre_comp_usu, displayText: "Crear nueva cuenta", currentNode: "Homepage > Crear Usuario"}) %>
+
+<div class="container">
+    <form method="POST">
+        <div class="row">
+            <div class="col-sm">
+              <p style='text-align: right;'>Cédula:</p>
+            </div>
+            <div class="col-sm">
+              <input name="cedula" type="number" class="form-control" required/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm">
+              <p style='text-align: right;'>Nombre Completo:</p>
+            </div>
+            <div class="col-sm">
+              <input name="nommbreComp" type="text" class="form-control" required/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm">
+              <p style='text-align: right;'>Usuario:</p>
+            </div>
+            <div class="col-sm">
+              <input name="nuevoUsuario" type="text" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm">
+              <p style='text-align: right;'>Contraseña:</p>
+            </div>
+            <div class="col-sm">
+              <input name="passwd" type="text" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm">
+              <p style='text-align: right;'>Confirmar contraseña:</p>
+            </div>
+            <div class="col-sm">
+              <input name="passwdConf" type="text" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm">
+              <p style='text-align: right;'>E-mail:</p>
+            </div>
+            <div class="col-sm">
+              <input name="email" type="text" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm">
+              <p style='text-align: right;'>Pregunta de Seguridad:</p>
+            </div>
+            <div class="col-sm">
+              <input name="pregunta" type="text" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm">
+              <p style='text-align: right;'>Respuesta de seguridad:</p>
+            </div>
+            <div class="col-sm">
+              <input name="respuesta" type="text" class="form-control" required />
+            </div>
+        </div>
+        <div class="alert alert-light" role="alert">
+            Se creará un usuario con el rol de consultor por default, para administrar los roles, favor dirigirse a la sección de 'Usuarios'.
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm">
+                <a href="/home">Regresar</a>
+            </div>
+            <div class="col-sm">
+                <input name="submit" type="submit" class="btn btn-success" value="Crear nuevo usuario" />
+            </div>
+        </div>
+    </form>
+   
+
+    <br>
+    <br>
+    <br>
+
+</div>
+
+<%- include('../part/tail') %>

@@ -8,6 +8,7 @@ const db = require('./db');
 // route modules
 const homeRouter = require("./routes/homeRoute");
 const loginRouter = require("./routes/loginRoute");
+const newuserRouter = require('./routes/newuserRoute');
 
 const PORT = process.env.PORT || 3000;
 const localhost = "127.0.0.1";
@@ -36,6 +37,7 @@ app.use(bodyParser.urlencoded({
 app.use("/static", express.static(path.join(__dirname, "./resources")));
 app.use("/home", homeRouter(db));
 app.use("/login", loginRouter(db));
+app.use("/newuser", newuserRouter(db));
 
 
 app.get("/", (req, res)=>{
@@ -44,5 +46,7 @@ app.get("/", (req, res)=>{
 
 app.listen(PORT, () => {
     console.log(`Servidor escuchando por peticiones en ${localhost}:${PORT}`);
-    //console.dir(await db.test());
+    //
+    // 
+    //
 });
