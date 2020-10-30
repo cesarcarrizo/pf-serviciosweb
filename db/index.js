@@ -11,6 +11,21 @@ const config = {
     }    
 };
 
+let usuarios = async () => {
+    // por default se crea el usuario siendo solo consultor
+    try{
+        let pool = await sql.connect(config);
+        let result = await pool.request()
+        .input('willnotbeused', sql.Int, '1')
+        .query(`select * from t_usuarios;`);
+
+        return result.recordset;
+    }
+    catch(err){
+        console.log(err);
+    }
+};
+
 let crearUsuario = async (cedula, nombreComp, username, passwd, email, pregunta, respuesta) =>{
     // por default se crea el usuario siendo solo consultor
     try{
@@ -23,7 +38,6 @@ let crearUsuario = async (cedula, nombreComp, username, passwd, email, pregunta,
     }
     catch(err){
         console.log(err);
-        return;
     }
 };
 
@@ -39,7 +53,6 @@ let guest = async (pk) => {
     }
     catch(err){
         console.log(err);
-        return;
     }
 }
 
@@ -95,12 +108,12 @@ let test = async () => {
     catch(err){
         // otherwiseeeee
         console.log(err);
-        return err;
     }
 };
 
 module.exports = {
     autenticacion,
     guest,
-    crearUsuario
+    crearUsuario,
+    usuarios
 };
