@@ -1,8 +1,13 @@
 <%- include('../part/head', {title: "Agregar un nuevo usuario"}) %>
-<%- include('../part/navbar', {rol_usu: data.rol_usu}) %>
-<%- include('../part/menubar', {name: data.nombre_comp_usu, displayText: "Crear nueva cuenta", currentNode: "Homepage > Crear Usuario"}) %>
+<%- include('../part/navbar', {rol_usu: global.__guest.rol_usu}) %>
+<%- include('../part/menubar', {name: global.__guest.nombre_comp_usu, displayText: "Crear nueva cuenta", currentNode: "Homepage > Crear Usuario"}) %>
 
 <div class="container">
+    <% if(passwdMismatch) { %>
+      <div class="alert alert-danger" role="alert">
+        Las contraseñas no coinciden! Por favor intente de nuevo.
+      </div>
+    <% } %>  
     <form method="POST">
         <div class="row">
             <div class="col-sm">

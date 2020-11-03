@@ -1,12 +1,68 @@
 <%- include('../part/head', {title: "Usuarios"}) %>
-<%- include('../part/navbar', {rol_usu: data.rol_usu}) %>
-<%- include('../part/menubar', {name: data.nombre_comp_usu, displayText: "N I Y", currentNode: "Homepage > Lista de usuarios"}) %>
+<%- include('../part/navbar', {rol_usu: global.__guest.rol_usu}) %>
+<%- include('../part/menubar', {name: global.__guest.nombre_comp_usu, displayText: "Lista de Usuarios", currentNode: "Homepage > Usuarios"}) %>
 
+<div class="container"> 
+    <div class="row">
+      <div class="col-sm">
+        <b>Cédula</b>
+      </div>
+      <div class="col-sm">
+        <b>Nombre Completo</b>
+      </div>
+      <div class="col-sm">
+        <b>Username</b>
+      </div>
+      <div class="col-sm">
+        <b>E-mail</b>
+      </div>
+      <div class="col-sm">
+        <b>Pregunta de Seguridad</b>
+      </div>
+      <div class="col-sm">
+        <b>EasyPay</b>
+      </div>
+      <div class="col-sm">
+        <b>Número de Rol</b>
+      </div>
+    </div>
+    <br>
 
-<%#  info: el arreglo contendra el nombre de la columna proveniente de la data, el segundo elemento es el valor %>
-<% const dataArray2D = Object.entries(data); %>
-<% dataArray2D.forEach(array => { %>
-    <h6><%= array[0] %>: <%= array[1] %>,</h6><br></br>
-<%});%>
+    <% usersArray.forEach(user => { %>
+      <div class="row">
+        <div class="col-sm">
+          <%= user.cedula_usu_pk %>
+        </div>
+        <div class="col-sm">
+          <%= user.nombre_comp_usu %>
+        </div>
+        <div class="col-sm">
+          <%= user.user_usu %>
+        </div>
+        <div class="col-sm">
+          <%= user.email_usu %>
+        </div>
+        <div class="col-sm">
+          <%= user.pregunta_usu %>
+        </div>
+        <div class="col-sm">
+          <% if(user.ep_safe_code_usu === null){ %>
+            N/A
+          <% } else { %>
+            <%= user.ep_safe_code_usu %> 
+          <% } %> 
+        </div>
+        <div class="col-sm">
+          <%= user.rol_usu %>
+        </div>
+      </div>
+      <br>
+    <% }); %>
+</div>  
+
+<br>
+<br>
+<br>
+
 
 <%- include('../part/tail') %>

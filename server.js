@@ -16,7 +16,7 @@ const localhost = "127.0.0.1";
 
 const app = express();
 
-
+// aca se almacena la data para el guest una vez loggeado para no tener que irla pasando de modulo en modulo
 global.logger = (req, res) => {
     let client = req.headers.host;
     let route = req.baseUrl;
@@ -36,6 +36,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use("/static", express.static(path.join(__dirname, "./resources")));
+
 app.use("/home", homeRouter(db));
 app.use("/login", loginRouter(db));
 app.use("/newuser", newuserRouter(db));
@@ -46,9 +47,13 @@ app.get("/", (req, res)=>{
    res.redirect("/login"); 
 });
 
-app.listen(PORT, () => {
+app.listen(PORT,  () => {
     console.log(`Servidor escuchando por peticiones en ${localhost}:${PORT}`);
     //
-    // 
-    //
+    //let guestData = await db.usuarios();
+    //console.dir(guestData);
+    global.__guest = {};
+    //global.__users = [];
+    global.authId = -1;
+    
 });
