@@ -3,11 +3,7 @@
 <%- include('../part/menubar', {name: global.__guest.nombre_comp_usu, displayText: "Crear nueva cuenta", currentNode: "Homepage > Crear Usuario"}) %>
 
 <div class="container">
-    <% if(passwdMismatch) { %>
-      <div class="alert alert-danger" role="alert">
-        Las contraseñas no coinciden! Por favor intente de nuevo.
-      </div>
-    <% } %>  
+    
     <form method="POST">
         <div class="row">
             <div class="col-sm">
@@ -93,7 +89,6 @@
             </div>
         </div>
     </form>
-   
 
     <br>
     <br>

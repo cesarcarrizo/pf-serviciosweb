@@ -8,7 +8,7 @@ const config = {
     driver: 'msnodesqlv8',
     options: {
         trustedConnection: true
-    }    
+    }
 };
 
 let usuarios = async () => {

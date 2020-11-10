@@ -10,6 +10,7 @@ const homeRouter = require("./routes/homeRoute");
 const loginRouter = require("./routes/loginRoute");
 const newuserRouter = require('./routes/newuserRoute');
 const usersRouter = require("./routes/usersRoute");
+const consecutivoRouter = require("./routes/consecutivoRoute");
 
 const PORT = process.env.PORT || 3000;
 const localhost = "127.0.0.1";
@@ -41,6 +42,7 @@ app.use("/home", homeRouter(db));
 app.use("/login", loginRouter(db));
 app.use("/newuser", newuserRouter(db));
 app.use("/users", usersRouter(db));
+app.use("/consecutivos", consecutivoRouter(db));
 
 
 app.get("/", (req, res)=>{
@@ -49,7 +51,7 @@ app.get("/", (req, res)=>{
 
 app.listen(PORT,  () => {
     console.log(`Servidor escuchando por peticiones en ${localhost}:${PORT}`);
-    //
+    // 
     //let guestData = await db.usuarios();
     //console.dir(guestData);
     global.__guest = {};

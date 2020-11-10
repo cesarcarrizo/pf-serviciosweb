@@ -20,10 +20,11 @@ module.exports = (db) => {
                 // procede a hacer la insercion
                 await db.crearUsuario(data.cedula, data.nombreComp, data.nuevoUsuario, data.passwd, data.email, data.pregunta, data.respuesta);
                 console.log(`USUARIO ${data.nuevoUsuario} CREADO EN LA BASE DE DATOS test_db.`);
-                return res.render("pages/homePage", {newuserAdded: true});
-            }else{
+                res.redirect("/users");
+            }
+            if(data.passwd !== data.passwdConf){
                 //quede aca
-                return res.render("pages/newuserPage", {passwdMismatch: true});
+                res.render("pages/homePage");
             }
         });
     

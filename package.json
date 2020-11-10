@@ -1,7 +1,7 @@
 {
     "name": "pf-servicios-web",
     "version": "1.0.0",
-    "description": "Proyecto final III cuatrimestre, valor del proyecto 55%, gestor de controlador aereo",
+    "description": "Proyecto final III cuatrimestre, valor del proyecto 55%, gestor de controlador aereo.",
     "main": "server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
